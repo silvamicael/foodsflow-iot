@@ -1,0 +1,7 @@
+node_modules/
+server/node_modules/
+server/.env
+server/foods.sqlite
+server/sessions.sqlite
+*.log
+.DS_Store
