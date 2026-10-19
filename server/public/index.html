@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Foods MQTT</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="container">
+    <section id="login-view" class="login-card">
+      <h1>Foods MQTT</h1>
+      <p class="muted">Sistema comercial de pedidos para foods</p>
+      <form id="login-form">
+        <label>Usuário<input name="username" autocomplete="username" required placeholder="Ex.: gerencia"></label>
+        <label>Senha<input name="password" type="password" autocomplete="current-password" required placeholder="Sua senha"></label>
+        <button type="submit">Entrar</button>
+        <p id="login-error" class="error"></p>
+      </form>
+      <details><summary>Credenciais de demonstração</summary>
+        <p>Gerência: <code>gerencia</code> / <code>Gerencia@123</code></p>
+        <p>Cozinha: <code>cozinha</code> / <code>Cozinha@123</code></p>
+        <p>Caixa: <code>caixa</code> / <code>Caixa@123</code></p>
+      </details>
+    </section>
+
+    <section id="app-view" hidden>
+      <header class="topbar">
+        <div><h1>Foods MQTT</h1><p id="profile" class="muted"></p></div>
+        <button id="logout" class="secondary">Sair</button>
+      </header>
+      <div class="stats">
+        <article class="stat"><span>Pedidos exibidos</span><strong id="count">0</strong></article>
+        <article class="stat"><span>Valor acumulado</span><strong id="sum">R$ 0,00</strong></article>
+      </div>
+      <section id="new-order-card" class="panel" hidden>
+        <h2>Novo pedido (teste pelo navegador)</h2>
+        <form id="order-form" class="order-form">
+          <label>Mesa<input name="mesa" type="number" min="1" value="5" required></label>
+          <label>Cliente<input name="cliente" value="Cliente Teste" required></label>
+          <label>Item<input name="nome" value="X-Burger" required></label>
+          <label>Preço unitário (R$)<input name="precoUnitario" type="number" min="0" step="0.01" value="25" required></label>
+          <label>Quantidade<input name="quantidade" type="number" min="1" value="2" required></label>
+          <button type="submit">Criar pedido de teste</button>
+        </form>
+        <p class="muted small">Este formulário é um atalho para testar o fluxo sem depender primeiro do aplicativo IoT MQTT Panel.</p>
+      </section>
+      <section class="panel">
+        <h2>Filtros</h2>
+        <form id="filters" class="filters">
+          <label>Status<select name="status"><option value="">Todos</option><option>PREPARANDO</option><option>PRONTO</option><option>PAGO</option></select></label>
+          <label>Mesa<input name="mesa" type="number" min="1" placeholder="Todas"></label>
+          <label>Valor mínimo<input name="min" type="number" min="0" step="0.01"></label>
+          <label>Valor máximo<input name="max" type="number" min="0" step="0.01"></label>
+          <button type="submit">Filtrar</button><button type="reset" class="secondary">Limpar</button>
+        </form>
+      </section>
+      <p id="notice" class="notice" role="status"></p>
+      <section id="orders" class="orders"></section>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
